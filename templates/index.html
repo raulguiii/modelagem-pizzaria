@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Impacta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>PIZZARIA IMPACTA</h1>
+        <h2>Veja nossos sabores disponíveis:</h2>
+        <ul class="menu">
+            {% for sabor, preco in sabores %}
+            <li>{{ sabor }} - R${{ preco }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="order-form">
+            <label for="pizza-sabor">Escolha o sabor da pizza:</label>
+            <select id="pizza-sabor">
+                {% for sabor, _ in sabores %}
+                <option value="{{ sabor }}">{{ sabor }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="pagamento">Método de pagamento:</label>
+            <select id="pagamento">
+                <option value="dinheiro">Dinheiro</option>
+                <option value="cartão">Cartão</option>
+                <option value="pix">Pix</option>
+            </select>
+
+            <button id="enviar">Fazer pedido</button>
+        </div>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
